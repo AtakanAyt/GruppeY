@@ -1,0 +1,22 @@
+public class messdaten {
+    private long messdaten_ID;
+    private long kunden_ID;
+    private String datum;
+    private double zählerstand;
+    private String kommentar;
+    private String verbrauchstyp;
+    private String einheitentyp;
+    private String abrechnungsstatus;
+    private int getSubstitute;
+
+    // Konstruktor, Getter und Setter Methoden
+    // ...
+
+    @Override
+    public String toString() {
+        return "Messdaten [Messdaten_ID=" + messdaten_ID + ", Kunden_ID=" + kunden_ID + ", Datum=" + datum
+                + ", Zählerstand=" + zählerstand + ", Kommentar=" + kommentar + ", Verbrauchstyp=" + verbrauchstyp
+                + ", Einheitentyp=" + einheitentyp + ", Abrechnungsstatus=" + abrechnungsstatus + ", GetSubstitute="
+                + getSubstitute + "]";
+    }
+}

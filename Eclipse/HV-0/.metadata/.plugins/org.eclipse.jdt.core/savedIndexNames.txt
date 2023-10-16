@@ -1,0 +1,9 @@
+INDEX VERSION 1.134+/Users/guengoermues/Desktop/Dateien-20231013/Eclipse/HV-0/.metadata/.plugins/org.eclipse.jdt.core
+3050375003.index
+2788421501.index
+3194591193.index
+1865797976.index
+2907215523.index
+1077097505.index
+1818075638.index
+3610947079.index
