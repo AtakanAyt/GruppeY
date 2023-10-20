@@ -1,0 +1,61 @@
+package tst;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class ConnectToSqlite {
+
+    public Connection dbConnector(String dbName) {
+    	System.out.println("Working Directory: " + System.getProperty("user.dir"));
+        try {
+            Class.forName("org.sqlite.JDBC");
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:" + dbName);
+            System.out.println("Connection to SQLite has been established.");
+            return conn;
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    }
+
+    public void displayFirstFiveRows(Connection conn) {
+        try {
+            String query = "SELECT * FROM kunden LIMIT 5";
+            PreparedStatement statement = conn.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                int id = resultSet.getInt("Nr.");
+                String name = resultSet.getString("Vorname");
+                System.out.println("Nr: " + id + ", Vorname: " + name);
+            }
+
+            resultSet.close();
+            statement.close();
+
+        } catch (SQLException e) {
+            System.err.println("Error executing the query: " + e.getMessage());
+        }
+    }
+
+    public static void main(String[] args) {
+        // The database is in the root folder
+        String dbNameOfProject = "Projekt.db";
+
+        ConnectToSqlite connector = new ConnectToSqlite();
+        Connection conn = connector.dbConnector(dbNameOfProject);
+
+        if (conn != null) {
+            connector.displayFirstFiveRows(conn);
+
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                System.err.println("Error closing the connection: " + e.getMessage());
+            }
+        }
+    }
+}

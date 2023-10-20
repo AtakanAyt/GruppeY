@@ -1,0 +1,33 @@
+package tst;
+
+import org.jdbi.v3.core.Jdbi;
+
+import dev.hv.db.init.IDbConnect;
+
+public class DbConnectImpl implements IDbConnect {
+
+	@Override
+	public void createAllTables() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Jdbi getJdbi() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Jdbi getJdbi(String uri, String user, String pw) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void removeAllTables() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

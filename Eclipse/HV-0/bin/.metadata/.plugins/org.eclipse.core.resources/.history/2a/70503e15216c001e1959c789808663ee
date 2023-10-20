@@ -1,0 +1,5 @@
+package dev.hv.db.init;
+
+public class MessdatenDbConnect {
+
+}

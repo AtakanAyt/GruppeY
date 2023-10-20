@@ -1,0 +1,151 @@
+package mainPackage;
+public class Messdaten {
+    private long messdaten_ID;
+    private long kunden_ID;
+    private String datum;
+    private double zählerstand;
+    private String kommentar;
+    private String verbrauchstyp;
+    private String einheitentyp;
+    private String abrechnungsstatus;
+    private int getSubstitute;
+
+    
+    
+
+    public Messdaten(int messdatenId) {
+    
+    }
+
+
+
+
+	public long getMessdaten_ID() {
+		return messdaten_ID;
+	}
+
+
+
+
+	public void setMessdaten_ID(long messdaten_ID) {
+		this.messdaten_ID = messdaten_ID;
+	}
+
+
+
+
+	public long getKunden_ID() {
+		return kunden_ID;
+	}
+
+
+
+
+	public void setKunden_ID(long kunden_ID) {
+		this.kunden_ID = kunden_ID;
+	}
+
+
+
+
+	public String getDatum() {
+		return datum;
+	}
+
+
+
+
+	public void setDatum(String datum) {
+		this.datum = datum;
+	}
+
+
+
+
+	public double getZählerstand() {
+		return zählerstand;
+	}
+
+
+
+
+	public void setZählerstand(double zählerstand) {
+		this.zählerstand = zählerstand;
+	}
+
+
+
+
+	public String getKommentar() {
+		return kommentar;
+	}
+
+
+
+
+	public void setKommentar(String kommentar) {
+		this.kommentar = kommentar;
+	}
+
+
+
+
+	public String getVerbrauchstyp() {
+		return verbrauchstyp;
+	}
+
+
+
+
+	public void setVerbrauchstyp(String verbrauchstyp) {
+		this.verbrauchstyp = verbrauchstyp;
+	}
+
+
+
+
+	public String getEinheitentyp() {
+		return einheitentyp;
+	}
+
+
+
+
+	public void setEinheitentyp(String einheitentyp) {
+		this.einheitentyp = einheitentyp;
+	}
+
+
+
+
+	public String getAbrechnungsstatus() {
+		return abrechnungsstatus;
+	}
+
+
+
+
+	public void setAbrechnungsstatus(String abrechnungsstatus) {
+		this.abrechnungsstatus = abrechnungsstatus;
+	}
+
+
+
+
+	public int getGetSubstitute() {
+		return getSubstitute;
+	}
+
+
+
+
+	public void setGetSubstitute(int getSubstitute) {
+		this.getSubstitute = getSubstitute;
+	}
+}
+
+	public static void main (String[] args) {
+		Messdaten datum = new Messdaten();
+		datum.getDatum();
+		
+	}

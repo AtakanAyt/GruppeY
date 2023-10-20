@@ -1,0 +1,44 @@
+package tst;
+import org.jdbi.v3.core.Jdbi;
+import org.jdbi.v3.sqlobject.SqlObjectPlugin;
+
+public class SQLiteDbConnect implements IDbConnect {
+
+    private static final String DEFAULT_DB_URL = "jdbc:sqlite:Projekt.db";
+    private static Jdbi jdbiInstance;
+
+    @Override
+    public void createAllTables() {
+        getJdbi().useHandle(handle -> {
+            handle.execute("CREATE TABLE IF NOT EXISTS messdaten (Messdaten_ID INTEGER PRIMARY KEY, Kunden_ID INTEGER, Datum TEXT, Zählerstand REAL, Kommentar TEXT, Verbrauchstyp TEXT, Einheitentyp TEXT, Abrechnungsstatus TEXT, GetSubstitute INTEGER);");
+            // Fügen Sie weitere Tabellenerstellungsanweisungen hinzu, falls erforderlich
+        });
+    }
+
+    @Override
+    public Jdbi getJdbi() {
+        if (jdbiInstance == null) {
+            jdbiInstance = Jdbi.create(DEFAULT_DB_URL);
+            jdbiInstance.installPlugin(new SqlObjectPlugin());
+        }
+        return jdbiInstance;
+    }
+
+    @Override
+    public Jdbi getJdbi(String uri, String user, String pw) {
+        // Da SQLite keine Benutzeranmeldung unterstützt, ignorieren wir die `user`- und `pw`-Parameter
+        if (jdbiInstance == null) {
+            jdbiInstance = Jdbi.create(uri);
+            jdbiInstance.installPlugin(new SqlObjectPlugin());
+        }
+        return jdbiInstance;
+    }
+
+    @Override
+    public void removeAllTables() {
+        getJdbi().useHandle(handle -> {
+            handle.execute("DROP TABLE IF EXISTS messdaten");
+            // Fügen Sie weitere Tabellenlöschanweisungen hinzu, falls erforderlich
+        });
+    }
+}

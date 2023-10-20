@@ -1,0 +1,52 @@
+package dev.hv.db.init;
+
+import org.jdbi.v3.core.Jdbi;
+import org.jdbi.v3.sqlobject.SqlObjectPlugin;
+
+public class MessdatenDbConnect implements IDbConnect {
+
+    private static Jdbi jdbiInstance = null;
+    private static final String DB_PATH = "jdbc:sqlite:Projekt.db"; // Pfad zur Datenbank
+
+    @Override
+    public void createAllTables() {
+        getJdbi().useHandle(handle -> {
+            handle.execute("CREATE TABLE IF NOT EXISTS messdaten (" +
+                    "Messdaten_ID INTEGER PRIMARY KEY," +
+                    "Kunden_ID INTEGER," +
+                    "Datum TEXT," +
+                    "Zählerstand REAL," +
+                    "Kommentar TEXT," +
+                    "Verbrauchstyp TEXT," +
+                    "Einheitentyp TEXT," +
+                    "Abrechnungsstatus TEXT," +
+                    "GetSubstitute INTEGER" +
+                    ")");
+        });
+    }
+
+    @Override
+    public Jdbi getJdbi() {
+        if (jdbiInstance == null) {
+            jdbiInstance = Jdbi.create(DB_PATH);
+            jdbiInstance.installPlugin(new SqlObjectPlugin());
+        }
+        return jdbiInstance;
+    }
+
+    @Override
+    public Jdbi getJdbi(String uri, String user, String pw) {
+        if (jdbiInstance == null) {
+            jdbiInstance = Jdbi.create(uri, user, pw);
+            jdbiInstance.installPlugin(new SqlObjectPlugin());
+        }
+        return jdbiInstance;
+    }
+
+    @Override
+    public void removeAllTables() {
+        getJdbi().useHandle(handle -> {
+            handle.execute("DROP TABLE IF EXISTS messdaten");
+        });
+    }
+}
